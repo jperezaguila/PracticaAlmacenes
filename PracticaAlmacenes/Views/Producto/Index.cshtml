@@ -1,0 +1,17 @@
+﻿@model IEnumerable<PracticaAlmacenes.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Productos</h2>
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+        @Html.DisplayNameFor(o => o.nombre)
+        @Html.DisplayFor(o => item.nombre)
+        <br />
+        @Html.ActionLink("Ver ", "Detalle", new { id = item.idProducto })
+    </div>
+}
+
