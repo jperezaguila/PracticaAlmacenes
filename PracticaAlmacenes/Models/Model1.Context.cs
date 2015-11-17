@@ -13,10 +13,10 @@ namespace PracticaAlmacenes.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class mitienda02Entities : DbContext
+    public partial class mitienda02Entities1 : DbContext
     {
-        public mitienda02Entities()
-            : base("name=mitienda02Entities")
+        public mitienda02Entities1()
+            : base("name=mitienda02Entities1")
         {
         }
     
@@ -29,7 +29,6 @@ namespace PracticaAlmacenes.Models
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Etiqueta> Etiqueta { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
-        public virtual DbSet<ProductoEtiqueta> ProductoEtiqueta { get; set; }
         public virtual DbSet<ProductosAlmacen> ProductosAlmacen { get; set; }
     }
 }

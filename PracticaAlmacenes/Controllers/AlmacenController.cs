@@ -10,7 +10,7 @@ namespace PracticaAlmacenes.Controllers
 {
     public class AlmacenController : Controller
     {
-        mitienda02Entities db=  new mitienda02Entities();
+        mitienda02Entities1 db=  new mitienda02Entities1();
 
         public ActionResult Borrar(int id)
         {

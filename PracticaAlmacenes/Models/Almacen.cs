@@ -7,10 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
 namespace PracticaAlmacenes.Models
 {
     using System;
@@ -27,15 +23,7 @@ namespace PracticaAlmacenes.Models
         public int idAlmacen { get; set; }
         public string nombre { get; set; }
         public string ciudad { get; set; }
-
-        [DisplayName("Codigo Postal")]
-        [Required]
-        [RegularExpression("^[0-9]{5}$", ErrorMessage = "Codido Postal Incorrrecto")]
-
         public string codigo_postal { get; set; }
-        
-
-
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductosAlmacen> ProductosAlmacen { get; set; }

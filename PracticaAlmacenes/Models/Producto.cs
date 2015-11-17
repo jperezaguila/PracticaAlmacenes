@@ -17,8 +17,8 @@ namespace PracticaAlmacenes.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Producto()
         {
-            this.ProductoEtiqueta = new HashSet<ProductoEtiqueta>();
             this.ProductosAlmacen = new HashSet<ProductosAlmacen>();
+            this.Etiqueta = new HashSet<Etiqueta>();
         }
     
         public int idProducto { get; set; }
@@ -31,8 +31,8 @@ namespace PracticaAlmacenes.Models
     
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductoEtiqueta> ProductoEtiqueta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductosAlmacen> ProductosAlmacen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Etiqueta> Etiqueta { get; set; }
     }
 }

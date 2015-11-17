@@ -69,7 +69,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductoEtiqueta_Etiqueta">
+        <Association Name="FK_ProductoEtiqueta_Etiqueta1">
           <End Role="Etiqueta" Type="Self.Etiqueta" Multiplicity="1" />
           <End Role="ProductoEtiqueta" Type="Self.ProductoEtiqueta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -77,7 +77,7 @@
               <PropertyRef Name="idEtiqueta" />
             </Principal>
             <Dependent Role="ProductoEtiqueta">
-              <PropertyRef Name="idProducto" />
+              <PropertyRef Name="idEtiqueta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -128,7 +128,7 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductoEtiqueta_Etiqueta" Association="Self.FK_ProductoEtiqueta_Etiqueta">
+          <AssociationSet Name="FK_ProductoEtiqueta_Etiqueta1" Association="Self.FK_ProductoEtiqueta_Etiqueta1">
             <End Role="Etiqueta" EntitySet="Etiqueta" />
             <End Role="ProductoEtiqueta" EntitySet="ProductoEtiqueta" />
           </AssociationSet>
@@ -174,7 +174,7 @@
           </Key>
           <Property Name="idEtiqueta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ProductoEtiqueta" Relationship="Self.FK_ProductoEtiqueta_Etiqueta" FromRole="Etiqueta" ToRole="ProductoEtiqueta" />
+          <NavigationProperty Name="Producto" Relationship="Self.ProductoEtiqueta" FromRole="Etiqueta" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -188,18 +188,8 @@
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="idCategoria" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categoria" Relationship="Self.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
-          <NavigationProperty Name="ProductoEtiqueta" Relationship="Self.FK_ProductoEtiqueta_Producto" FromRole="Producto" ToRole="ProductoEtiqueta" />
           <NavigationProperty Name="ProductosAlmacen" Relationship="Self.FK_ProductosAlmacen_Producto" FromRole="Producto" ToRole="ProductosAlmacen" />
-        </EntityType>
-        <EntityType Name="ProductoEtiqueta">
-          <Key>
-            <PropertyRef Name="idProducto" />
-            <PropertyRef Name="idEtiqueta" />
-          </Key>
-          <Property Name="idProducto" Type="Int32" Nullable="false" />
-          <Property Name="idEtiqueta" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Etiqueta" Relationship="Self.FK_ProductoEtiqueta_Etiqueta" FromRole="ProductoEtiqueta" ToRole="Etiqueta" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_ProductoEtiqueta_Producto" FromRole="ProductoEtiqueta" ToRole="Producto" />
+          <NavigationProperty Name="Etiqueta" Relationship="Self.ProductoEtiqueta" FromRole="Producto" ToRole="Etiqueta" />
         </EntityType>
         <EntityType Name="ProductosAlmacen">
           <Key>
@@ -236,30 +226,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductoEtiqueta_Etiqueta">
-          <End Role="Etiqueta" Type="Self.Etiqueta" Multiplicity="1" />
-          <End Role="ProductoEtiqueta" Type="Self.ProductoEtiqueta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Etiqueta">
-              <PropertyRef Name="idEtiqueta" />
-            </Principal>
-            <Dependent Role="ProductoEtiqueta">
-              <PropertyRef Name="idProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductoEtiqueta_Producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="ProductoEtiqueta" Type="Self.ProductoEtiqueta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="idProducto" />
-            </Principal>
-            <Dependent Role="ProductoEtiqueta">
-              <PropertyRef Name="idProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProductosAlmacen_Producto">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="ProductosAlmacen" Type="Self.ProductosAlmacen" Multiplicity="*" />
@@ -272,12 +238,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="mitienda02Entities" annotation:LazyLoadingEnabled="true">
+        <Association Name="ProductoEtiqueta">
+          <End Role="Etiqueta" Type="Self.Etiqueta" Multiplicity="*" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="mitienda02Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Almacen" EntityType="Self.Almacen" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Etiqueta" EntityType="Self.Etiqueta" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="ProductoEtiqueta" EntityType="Self.ProductoEtiqueta" />
           <EntitySet Name="ProductosAlmacen" EntityType="Self.ProductosAlmacen" />
           <AssociationSet Name="FK_ProductosAlmacen_Almacen" Association="Self.FK_ProductosAlmacen_Almacen">
             <End Role="Almacen" EntitySet="Almacen" />
@@ -287,17 +256,13 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductoEtiqueta_Etiqueta" Association="Self.FK_ProductoEtiqueta_Etiqueta">
-            <End Role="Etiqueta" EntitySet="Etiqueta" />
-            <End Role="ProductoEtiqueta" EntitySet="ProductoEtiqueta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductoEtiqueta_Producto" Association="Self.FK_ProductoEtiqueta_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="ProductoEtiqueta" EntitySet="ProductoEtiqueta" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProductosAlmacen_Producto" Association="Self.FK_ProductosAlmacen_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ProductosAlmacen" EntitySet="ProductosAlmacen" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoEtiqueta" Association="Self.ProductoEtiqueta">
+            <End Role="Etiqueta" EntitySet="Etiqueta" />
+            <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -305,7 +270,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="mitienda02ModelStoreContainer" CdmEntityContainer="mitienda02Entities">
+        <EntityContainerMapping StorageEntityContainer="mitienda02ModelStoreContainer" CdmEntityContainer="mitienda02Entities1">
           <EntitySetMapping Name="Almacen">
             <EntityTypeMapping TypeName="mitienda02Model.Almacen">
               <MappingFragment StoreEntitySet="Almacen">
@@ -345,14 +310,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductoEtiqueta">
-            <EntityTypeMapping TypeName="mitienda02Model.ProductoEtiqueta">
-              <MappingFragment StoreEntitySet="ProductoEtiqueta">
-                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
-                <ScalarProperty Name="idEtiqueta" ColumnName="idEtiqueta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductosAlmacen">
             <EntityTypeMapping TypeName="mitienda02Model.ProductosAlmacen">
               <MappingFragment StoreEntitySet="ProductosAlmacen">
@@ -362,6 +319,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ProductoEtiqueta" TypeName="mitienda02Model.ProductoEtiqueta" StoreEntitySet="ProductoEtiqueta">
+            <EndProperty Name="Etiqueta">
+              <ScalarProperty Name="idEtiqueta" ColumnName="idEtiqueta" />
+            </EndProperty>
+            <EndProperty Name="Producto">
+              <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

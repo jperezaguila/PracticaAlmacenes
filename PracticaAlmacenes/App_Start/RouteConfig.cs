@@ -11,11 +11,31 @@ namespace PracticaAlmacenes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            //axd son fichero o librerias compiladas y lo ignora
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+
+
+            routes.MapRoute(
+                name: "DetalleProducto",
+                url:"producto/{nombre}",
+                defaults: new
+                {
+                    Controller = "Producto",
+                    
+                }
+                    );
 
             routes.MapRoute(
                 name: "Default",
+                //Son parametro variables 1 controller 2 action y 3 id si id no esta en {} sera
+                //
                 url: "{controller}/{action}/{id}",
+
+                //ejemplo de ruta predetermida 17/112015
+                //defaults: new { controller = "Producto", action = "Index", id = UrlParameter.Optional }
+                
+                
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
