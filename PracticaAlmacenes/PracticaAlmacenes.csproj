@@ -148,7 +148,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlmacenController.cs" />
-    <Compile Include="Controllers\EtiquetasController.cs" />
+    <Compile Include="Controllers\EtiquetaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProductosAjaxController.cs" />
     <Compile Include="Filtros\FiltroId.cs" />
@@ -193,10 +193,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Etiqueta\Index.cshtml" />
     <Content Include="Views\Shared\_fichaAlmacen.cshtml" />
-    <Content Include="Views\Etiquetas\Index.cshtml" />
     <Content Include="Views\ProductosAjax\Index.cshtml" />
-    <Content Include="Views\Shared\_listadoProducto.cshtml" />
+    <Content Include="Views\ProductosAjax\_listadoProducto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

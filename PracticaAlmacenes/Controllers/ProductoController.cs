@@ -13,29 +13,29 @@ namespace PracticaAlmacenes.Controllers
 
 
         //implementacion nueva 
-        
-       
+
+
         public ActionResult Index()
         {
             //codigo añadido ejemplo de ViewBag 16/11
-            var info = db.Etiqueta;
-            ViewBag.etiquetas = info.ToList();
+           // var info = db.Etiqueta;
+            //ViewBag.etiquetas = info.ToList();
             
             //codigo añadido ejemplo de ViewData  16/11
             //ViewData["Titulo"] = "Listado de Almacenes";
-            ViewData["Titulo"] = info.ToList();
+            //ViewData["Titulo"] = info.ToList();
 
             var data = db.Producto;
             return View(data);
         }
 
         //Tras haber cambiado el campo en RouteConfig.cs añadiremos esta parte de codigo 17/11
-        public ActionResult Detalle(string nombre)
+        public ActionResult Detalle(String nombre)
         {
             var nom = nombre.Replace("_", " ");
 
             var data = db.Producto.FirstOrDefault(o => o.nombre == nom);
-            if (data ==null)
+            if (data == null)
                 return RedirectToAction("Index");
             return View(data);
         }

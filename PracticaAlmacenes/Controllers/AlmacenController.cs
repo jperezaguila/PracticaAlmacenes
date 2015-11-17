@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PracticaAlmacenes.Filtros;
 using PracticaAlmacenes.Models;
 
 namespace PracticaAlmacenes.Controllers
@@ -32,7 +33,7 @@ namespace PracticaAlmacenes.Controllers
             return View(data);
         }
 
-
+        [FiltroId]
         public ActionResult Modificacion(int id)
         {
             var data = db.Almacen.Find(id);

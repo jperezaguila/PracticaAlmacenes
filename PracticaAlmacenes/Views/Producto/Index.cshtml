@@ -25,6 +25,7 @@
         }
 
         @*@Aqui tambien modificamos para que reemplace bien la direccion url 17-11*@
+
         @Html.ActionLink("Ver ", "Detalle", new { nombre=item.nombre.Replace(" ", "_")})
         
     @*@Html.ActionLink("Ver ", "Detalle", new { id = item.idProducto })*@

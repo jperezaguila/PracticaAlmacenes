@@ -7,8 +7,31 @@ using System.Web.Mvc;
 
 namespace PracticaAlmacenes.Filtros
 {
-    public class FiltroId:ActionFilterAttribute
+    public class FiltroId : ActionFilterAttribute
     {
-        
+        public override void OnActionExecuting
+                  (ActionExecutingContext filterContext)
+        {
+            String id = null;
+            try
+            {
+                id = filterContext.ActionParameters["id"].ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+            var pet = filterContext.ActionDescriptor.ActionName;
+            if (id == null && pet != "Index")
+            {
+                filterContext.Result =
+                    new HttpStatusCodeResult(500);// RedirectResult("http://www.google.com");
+
+
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
     }
 }

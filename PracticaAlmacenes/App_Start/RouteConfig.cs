@@ -18,13 +18,14 @@ namespace PracticaAlmacenes
 
             routes.MapRoute(
                 name: "DetalleProducto",
-                url:"producto/{nombre}",
+                url:"item/{nombre}",
                 defaults: new
                 {
-                    Controller = "Producto",
-                    
+                    controller = "Producto",
+                    action="Detalle",
+                    nombre=UrlParameter.Optional
                 }
-                    );
+                );
 
             routes.MapRoute(
                 name: "Default",
@@ -36,7 +37,7 @@ namespace PracticaAlmacenes
                 //defaults: new { controller = "Producto", action = "Index", id = UrlParameter.Optional }
                 
                 
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Producto", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
