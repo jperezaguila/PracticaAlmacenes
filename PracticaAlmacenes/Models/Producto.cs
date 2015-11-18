@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace PracticaAlmacenes.Models
 {
     using System;
@@ -27,6 +30,8 @@ namespace PracticaAlmacenes.Models
         public int pcoste { get; set; }
         public Nullable<int> pventa { get; set; }
         public string descripcion { get; set; }
+        [DisplayName("Categoria")]
+        [Range(1, 4, ErrorMessage = "Valores de 1 a 4")]
         public int idCategoria { get; set; }
     
         public virtual Categoria Categoria { get; set; }
